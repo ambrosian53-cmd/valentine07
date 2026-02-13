@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fbc2eb;
+            background-image: linear-gradient(135deg, #fbc2eb 0%, #ff9a9e 100%);
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+        }
+
+        .heart-frame {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 60px 80px;
+            border-radius: 50%;
+            border: 10px dotted #fff;
+            box-shadow: 0 0 40px rgba(214, 51, 132, 0.4);
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #b3365b;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        button {
+            padding: 15px 45px;
+            font-size: 1.6rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn { background-color: #ff4d6d; color: white; }
+        #noBtn { background-color: #fff; color: #ff4d6d; position: relative; }
+
+        #successScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #fff0f3;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #successScreen img {
+            width: 95vw;
+            height: 85vh;
+            object-fit: contain;
+            border: 8px solid white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .success-text {
+            margin-top: 15px;
+            color: #d63384;
+            font-size: 2.5rem;
+            font-family: 'Brush Script MT', cursive;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-frame" id="mainCard">
+        <h1>Will you be my Valentine?</h1>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onclick="moveNo()">No</button>
+        </div>
+    </div>
+
+    <div id="successScreen">
+        <img src="Picsart_26-02-14_00-34-10-524.jpg" alt="Valentine Image">
+        <div class="success-text">I knew you'd say Yes! ❤️</div>
+        <div id="musicPlayer"></div>
+    </div>
+
+    <script>
+        function moveNo() {
+            alert("You don't have an option, you need to say yes!");
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function celebrate() {
+            document.getElementById('successScreen').style.display = 'flex';
+            document.getElementById('mainCard').style.display = 'none';
+
+            const player = document.getElementById('musicPlayer');
+            player.innerHTML = `<iframe width="0" height="0" src="https://www.youtube.com/embed/atRzwlp0iDk?autoplay=1" frameborder="0" allow="autoplay"></iframe>`;
+        }
+    </script>
+</body>
+</html>
